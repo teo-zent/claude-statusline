@@ -60,6 +60,7 @@ fetch_quota() {
   token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null | python3 -c "import sys,json; print(json.loads(sys.stdin.read()).get('claudeAiOauth',{}).get('accessToken',''))" 2>/dev/null)
   [ -z "$token" ] && return 1
 
+  umask 077
   curl -s --max-time 5 "https://api.anthropic.com/api/oauth/usage" \
     -H "Authorization: Bearer $token" \
     -H "anthropic-beta: oauth-2025-04-20" > "$CACHE_FILE" 2>/dev/null
@@ -162,7 +163,7 @@ if [ -f "$COST_CACHE" ] && [ -s "$COST_CACHE" ]; then
 fi
 
 if $cost_need_refresh; then
-  python3 "$SCRIPT_DIR/cost_aggregator.py" > "$COST_CACHE" 2>/dev/null &
+  (umask 077; python3 "$SCRIPT_DIR/cost_aggregator.py" > "$COST_CACHE" 2>/dev/null) &
 fi
 
 if [ -f "$COST_CACHE" ] && [ -s "$COST_CACHE" ]; then
