@@ -14,6 +14,8 @@ curl -fsSL https://raw.githubusercontent.com/teo-zent/claude-statusline/main/ins
 
 Then **restart Claude Code** (exit and reopen).
 
+> **Note:** If you already have a `statusLine` config in `~/.claude/settings.json`, the installer will back it up to `settings.json.backup` before replacing it. All other settings (permissions, model, etc.) are preserved.
+
 Works on any terminal — iTerm2, Terminal.app, VS Code, PyCharm, Warp, Alacritty, etc. The status line is rendered by Claude Code itself, so the terminal app doesn't matter.
 
 ## What each section means

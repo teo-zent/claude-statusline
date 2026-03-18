@@ -89,7 +89,9 @@ STATUSLINE_CMD="~/.claude/statusline/statusline.sh"
 
 if [ -f "$SETTINGS" ]; then
   if grep -q "statusLine" "$SETTINGS" 2>/dev/null; then
-    # Update existing statusLine command
+    # Backup existing settings before overwriting statusLine
+    cp "$SETTINGS" "${SETTINGS}.backup"
+    warn "Existing statusLine config found — backed up to settings.json.backup"
     python3 -c "
 import json
 with open('$SETTINGS') as f:
