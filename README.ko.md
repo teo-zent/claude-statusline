@@ -2,8 +2,10 @@
 
 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)용 실시간 상태 표시줄. 컨텍스트 사용량, 계정 쿼터, 비용을 터미널에 보여줍니다.
 
+![screenshot](assets/screenshot.png)
+
 ```
-░░░░░░░░░░ 4% | 40k/1M | $1.53 | Opus 4.6 | 5h ░░░░░░░░░░ 5% (→ 4h 28m) | 7d ██▒▒▒░░░░░ 24% + rsv 29% (→ 3d 7h) | today $65.01 · month $495.23 | ~/my-project
+██░░░░░░░░ 19% | 190k/1M | $20.11 | Opus 4.6 | 5h ██░░░░░░░░ 21% (→ 2h 22m) | 7d ██░░░░░░░░ 25% (→ 3d 5h) | today $161.87 · month $536.37 | ~/my-project
 ```
 
 ## 설치
