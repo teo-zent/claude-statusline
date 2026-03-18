@@ -67,7 +67,7 @@ fetch_quota() {
 
 # Check cache age and refresh if needed
 need_refresh=true
-if [ -f "$CACHE_FILE" ]; then
+if [ -f "$CACHE_FILE" ] && [ -s "$CACHE_FILE" ]; then
   cache_age=$(( $(date +%s) - $(stat -f%m "$CACHE_FILE" 2>/dev/null || echo 0) ))
   [ "$cache_age" -lt "$CACHE_MAX_AGE" ] && need_refresh=false
 fi
@@ -156,7 +156,7 @@ COST_STR=""
 SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0" 2>/dev/null || readlink "$0" 2>/dev/null || echo "$0")")" && pwd)"
 
 cost_need_refresh=true
-if [ -f "$COST_CACHE" ]; then
+if [ -f "$COST_CACHE" ] && [ -s "$COST_CACHE" ]; then
   cost_cache_age=$(( $(date +%s) - $(stat -f%m "$COST_CACHE" 2>/dev/null || echo 0) ))
   [ "$cost_cache_age" -lt "$CACHE_MAX_AGE" ] && cost_need_refresh=false
 fi
